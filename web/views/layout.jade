@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title zmemb uploader system
+    link(rel='stylesheet', href='/public/client/bootstrap.min.css')
+    link(rel='stylesheet', href='/public/client/custom.css')
+    block scripts
+      script(src='/public/client/jquery-2.0.3.min.js')
+      script(src='/public/client/bootstrap.min.js')
+
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand(href="/") Example
+          ul.nav
+            if (typeof(user) == 'undefined')
+              li
+                a(href="/register") Register
+              li
+                a(href="/login") Log In
+            else
+              li
+                a(href="/logout") Log Out
+
+    .container
+      block content
