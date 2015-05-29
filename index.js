@@ -47,6 +47,7 @@ module.exports = function(handlerModule, opts){
     app.use('/', require('./lib/routes'));
     app.all('/public', isLoggedIn);
     app.all('/getall', isLoggedIn);
+    app.all('/delteall', isLoggedIn);
 
     // static site hosting
     if (opts.static) {
@@ -74,7 +75,10 @@ module.exports = function(handlerModule, opts){
             method: 'get',
             url: '/getall'
         },
-
+        deleteall:{
+            method: 'get',
+            url: '/deleteall'
+        },
         // s3 endpoint specification
         sign: {
             method: 'post',
