@@ -65,7 +65,7 @@ debug("options: " + JSON.stringify(opts));
 
 var app = fineuploader(argv.storage, opts);
 
-app.listen(argv.port, argv.host, function(){
+app.listen(argv.port,  function(){
     var startMessage = "start: " + argv.host + ":" + argv.port;
     debug(startMessage);
 });

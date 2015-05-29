@@ -27,6 +27,6 @@ npm start
 /login      get   获取登录页面
 /login      post  发送登录信息，验证登录是否成功
 /logout 	      退出	
-/upload		      上传，登录后自动跳转到该网页
+/public		  上传页面，登录后自动跳到该页
 /getall     get   获取登录用户上传的所有文件， json格式  
 /deleteall  get   危险，删除用户上传所有文件并删除数据库相关记录
