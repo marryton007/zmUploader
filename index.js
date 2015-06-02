@@ -15,9 +15,6 @@ var favicon = require('serve-favicon'),
     passport = require('passport'),
     localStrategy = require('passport-local').Strategy;    
 
-// force download
-var contentDisposition = require('content-disposition');
-
 module.exports = function(handlerModule, opts){
     var app = express();
 
@@ -46,7 +43,6 @@ module.exports = function(handlerModule, opts){
     // routers 
     app.use('/', require('./lib/routes'));
     app.all('/public', isLoggedIn);
-    app.all('/getall', isLoggedIn);
     app.all('/delteall', isLoggedIn);
 
     // static site hosting
@@ -57,7 +53,7 @@ module.exports = function(handlerModule, opts){
 
     if (opts.uploads) {
         debug("uploads directory is :" + opts.uploads);
-        app.use('/upfiles', express.static(path.join(opts.uploads, 'uploads'), {'setHeaders':setHeaders}));
+        app.use('/upfiles', express.static(path.join(opts.uploads, 'uploads')));
     }
 
     // specification for routes
@@ -70,6 +66,10 @@ module.exports = function(handlerModule, opts){
         delete: {
             method: 'delete',
             url: '/upload/:uuid'
+        },
+        jsongetall:{
+            method: 'post',
+            url: '/getall'
         },
         getall:{
             method: 'get',
@@ -109,11 +109,6 @@ module.exports = function(handlerModule, opts){
             app[method](url, handler);
         }
     });
-
-    // Set header to force download
-    function setHeaders(res, path) {
-      res.setHeader('Content-Disposition', contentDisposition(path))
-    }
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())
