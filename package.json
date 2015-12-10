@@ -20,7 +20,7 @@
     "url": "https://github.com/Widen/node-fine-uploader-server/issues"
   },
   "scripts": {
-    "start": "DEBUG=fineuploader nodejs ./bin/cli.js -u .. web",
+    "start": "DEBUG=fineuploader node ./bin/cli.js -u .. web",
     "mon": "DEBUG=fineuploader supervisor -- ./bin/cli.js -u .. web",
     "forever": "forever start ./bin/cli.js -u .. web",
     "devsrv": "DEBUG=fineuploader node ./bin/cli.js -u uploads static",
